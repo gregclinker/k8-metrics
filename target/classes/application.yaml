@@ -1,0 +1,20 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: [ "prometheus" ]
+      base-path: /
+      path-mapping:
+        prometheus: metrics
+  metrics:
+    enable:
+      jvm: false
+      tomcat: false
+      http: false
+      executor: false
+      process: false
+      logback: false
+      tasks: false
+      system: false
+      application: false
+      disk: false
