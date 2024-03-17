@@ -24,7 +24,7 @@ public class MetricsService {
     public void currentKeys(List<String> currentKeys) {
         final List<String> staleKeys = METRICS_MAP.keySet().stream().filter(key -> !currentKeys.contains(key)).collect(Collectors.toList());
         if (!staleKeys.isEmpty()) {
-            LOGGER.debug("purging stake keys {}", staleKeys);
+            LOGGER.debug("purging stale keys {}", staleKeys);
             METRICS_MAP.entrySet().removeIf(e -> staleKeys.contains(e.getKey()));
         }
     }

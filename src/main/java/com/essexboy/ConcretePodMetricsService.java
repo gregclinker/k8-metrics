@@ -25,7 +25,7 @@ import java.util.Map;
 
 @Service
 @Setter
-@Profile("default")
+@Profile({"default", "local"})
 public class ConcretePodMetricsService implements PodMetricsService {
 
     final static Logger LOGGER = LoggerFactory.getLogger(ConcretePodMetricsService.class);
@@ -56,7 +56,10 @@ public class ConcretePodMetricsService implements PodMetricsService {
             for (ContainerMetrics containerMetrics : item.getContainers()) {
                 final String containerName = containerMetrics.getName();
                 v1Pod.getSpec().getContainers().forEach(v1Container -> {
-                    if (containerName.equals(v1Container.getName())) {
+                    if (containerName.equals(v1Container.getName()) && app != null && v1Container.getResources() != null
+                            && !v1Container.getResources().getRequests().isEmpty()
+                            && !v1Container.getResources().getLimits().isEmpty()
+                    ) {
                         metricsDtos.add(new MetricsDto(podName, app, containerMetrics, v1Container));
                     }
                 });

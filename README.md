@@ -1,9 +1,19 @@
-# spring-boot-metrics-example
+# k8-metrics
 
-## Create Promethesu Metrics
+Wraps the [kubernetes Java client](https://github.com/kubernetes-client/java) in a Spring Boot app to produce simple container metrics. 
 
-Will produce the following metrics on http://localhost:8080/metrics
+## Build
+```commandline
+mvn clean instal
 ```
+## Build & Push a Docker Image
+```commandline
+mvn clean install -DskipTests
+docker build . -t gregclinker/k8-metrics:0.1
+docker push gregclinker/k8-metrics:0.1
+```
+Will produce the following metrics on http://localhost:8080/metrics
+```commandline
 # HELP pod_memory_usage pod memory usage in bytes
 # TYPE pod_memory_usage gauge
 pod_memory_usage{pod_name="pod2",} 28768.0
@@ -27,3 +37,4 @@ container_memory_usage{container_name="container3",pod_name="pod3",} 20074.0
 pod_cpu_usage{pod_name="pod2",} 20641.0
 pod_cpu_usage{pod_name="pod3",} 85001.0
 pod_cpu_usage{pod_name="pod1",} 4770.0```
+```

@@ -1,2 +1,3 @@
 /home/greg/work/k8-metrics/src/test/java/com/essexboy/ConcretePodMetricsServiceTests.java
+/home/greg/work/k8-metrics/src/test/java/com/essexboy/LocalPodMetricsServiceTest.java
 /home/greg/work/k8-metrics/src/test/java/com/essexboy/DummyPodMetricsServiceTest.java
